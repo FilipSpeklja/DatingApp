@@ -7,7 +7,7 @@ using API.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
-namespace API;
+namespace API.Controllers;
 
 public class AccountController : BaseApiController
 {
@@ -50,7 +50,9 @@ public class AccountController : BaseApiController
     [HttpPost("login")]
     public async Task<ActionResult<UserDto>> Login(LoginDto loginDto)
     {
-        var user = await _context.Users.FirstOrDefaultAsync(x => x.Username == loginDto.Username);
+        var user = await _context.Users
+            .Include(p => p.Photos)
+            .FirstOrDefaultAsync(x => x.Username == loginDto.Username);
 
         if (user == null)
         {
@@ -71,7 +73,8 @@ public class AccountController : BaseApiController
         return new UserDto
         {
             Username = user.Username,
-            Token = _tokenService.CreateToken(user)
+            Token = _tokenService.CreateToken(user),
+            PhotoUrl = user.Photos.FirstOrDefault(x => x.IsMain)?.Url
         };
     }
 
