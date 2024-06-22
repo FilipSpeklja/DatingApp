@@ -22,7 +22,7 @@ public class UserRepository : IUserRepository
     public async Task<MemberDto> GetMemberAsync(string username)
     {
         return await _context.Users
-            .Where(x => x.Username == username)
+            .Where(x => x.UserName == username)
             .ProjectTo<MemberDto>(_mapper.ConfigurationProvider)
             .FirstOrDefaultAsync();
     }
@@ -31,7 +31,7 @@ public class UserRepository : IUserRepository
     {
         var query =  _context.Users.AsQueryable();
 
-        query = query.Where(u => u.Username != userParams.CurrentUsername);
+        query = query.Where(u => u.UserName != userParams.CurrentUsername);
         query = query.Where(u => u.Gender == userParams.Gender);
 
         var minDob = DateOnly.FromDateTime(DateTime.Today.AddYears(-userParams.MaxAge - 1));
@@ -60,7 +60,7 @@ public class UserRepository : IUserRepository
     {
         return await _context.Users
             .Include(p => p.Photos)
-            .FirstOrDefaultAsync(x => x.Username == username);
+            .FirstOrDefaultAsync(x => x.UserName == username);
     }
 
     public async Task<IEnumerable<AppUser>> GetUsersAsync()
