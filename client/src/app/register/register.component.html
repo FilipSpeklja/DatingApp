@@ -15,10 +15,12 @@
     <app-text-input 
         [formControl]="$any(registerForm.controls['username'])" 
         [label]="'Username'"
+        [type]="'text'"
     ></app-text-input>
     <app-text-input 
         [formControl]="$any(registerForm.controls['knownAs'])" 
         [label]="'Known as'"
+        [type]="'text'"
     ></app-text-input>
     <app-date-picker 
         [formControl]="$any(registerForm.controls['dateOfBirth'])" 
@@ -28,10 +30,12 @@
     <app-text-input 
         [formControl]="$any(registerForm.controls['city'])" 
         [label]="'City'"
+        [type]="'text'"
     ></app-text-input>
     <app-text-input 
         [formControl]="$any(registerForm.controls['country'])" 
         [label]="'Country'"
+        [type]="'text'"
     ></app-text-input>
     <app-text-input 
         [formControl]="$any(registerForm.controls['password'])" 

@@ -4,7 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { GalleryItem, GalleryModule, ImageItem } from 'ng-gallery';
 import { TabDirective, TabsModule, TabsetComponent } from 'ngx-bootstrap/tabs';
 import { TimeagoModule } from 'ngx-timeago';
-import { MemberMessagesComponent } from 'src/app/_members/member-messages/member-messages.component';
+import { MemberMessagesComponent } from 'src/app/members/member-messages/member-messages.component';
 import { Member } from 'src/app/_models/member';
 import { Message } from 'src/app/_models/message';
 import { MembersService } from 'src/app/_services/members.service';
